@@ -1,0 +1,75 @@
+
+  h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-top: 20px;
+    color: #333;
+  }
+  body {
+    margin: 0;
+	  padding: 0;
+	  border: 0;
+    font-family: Arial, sans-serif;
+    border-color: white;
+  }
+  table {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+    margin-bottom: 2%;
+  }
+  .questionTable{
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+    margin-bottom: 10%;
+  }
+  th{
+    border: 1px solid black;
+    padding: 5%;
+
+  }
+  .questionTable th{
+    border: 1px solid black;
+    width: 10px;
+    background-color: #f2f2f2;
+  }
+  td{
+    width: 5px;
+    border: 1px solid black;
+  }
+ 
+  .bottom-right {
+    position: fixed;
+    bottom: -20%;
+    right: 20px;
+    transition: bottom 0.3s ease;
+    background-color: pink;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px 10px 0 0;
+    /* text-align: wrap; */
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    display: flex; /* 使用 Flexbox */
+    flex-direction: row; /* 設定為橫向排列 */
+    align-items: center; /* 垂直置中 */
+    gap: 10px; /* 元素間距 */
+    flex-wrap: wrap; /* 保持換行 */
+
+    white-space: pre-wrap;
+}
+  #jumpLinks {
+    width: 43%;
+  }
+  .bottom-right:hover {
+    bottom: 1vh;
+  }
+  
+
+  .bottom-right a {
+    color: white;
+    text-decoration: none;
+  }
+
