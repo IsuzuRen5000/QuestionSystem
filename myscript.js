@@ -1,9 +1,9 @@
 const totalQuestions = 100; // 題目數量
 const numberlength = totalQuestions.toString().length; // 題號長度
-const questionTable = document.getElementById('questionTable');
+const questionTable = document.getElementById('questionTable').appendChild(document.createElement('tbody'));
 const container = document.getElementById('jumpLinks');
 
-var checkAnsisShow = false; // 題目總覽是否顯示
+var checkAnsisShow = true; // 題目總覽是否顯示
 // 題目總覽按鈕
 const checkAnswerButton = document.querySelector('#checkAnsBtn').addEventListener('click', () => {
     checkAnsisShow = !checkAnsisShow;
@@ -26,40 +26,58 @@ const checkAnswerButton = document.querySelector('#checkAnsBtn').addEventListene
 
 for (let i = 1; i <= totalQuestions; i++) {
     const row = document.createElement('tr');
-    row.id = `q${i}`;
+    row.id = `q${i.toString().padStart(numberlength, '0')}`;
 
     const numberCell = document.createElement('td');
     numberCell.textContent = i;
-
+    
     const questionCell = document.createElement('td');
-    questionCell.innerHTML = `
-        <h4>Lorem ipsum dolor sit amet consecte ${i}</h4><br>
-        <label><input type="radio" name="q${i}" value="A"> a. 選項 A</label><br>
-        <label><input type="radio" name="q${i}" value="B"> b. 選項 B</label><br>
-        <label><input type="radio" name="q${i}" value="C"> c. 選項 C</label><br>
-        <label><input type="radio" name="q${i}" value="D"> d. 選項 D</label>
-    `;
+    questionCell.innerHTML = `<h4>${i}. Lorem ipsum dolor sit amet consecte ${i}</h4>`
+    // const questionCell = document.createElement('td');
+    for (let j = 0; j < 4; j++) {
+        const div = document.createElement('div');
+        div.className = 'question-input-group';
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = `${row.id}`;
+        input.id = `${row.id}${j}`;
+        input.className = 'form-check-input';
+        const label = document.createElement('label');
+        label.setAttribute('for', `${row.id}${j}`);
+        label.textContent = `選項 ${String.fromCharCode(65 + j)}`;
+        div.appendChild(input);
+        div.appendChild(label);
+        questionCell.appendChild(div);
+    }
+   
+    //     <div class="question-input-group">
+    //     <input type="radio" 
+    //            id="${row.id}${index}"
+    //            name="q${i}"> 
+    //     <label for="${row.id}${index++}">
+    //         a. 選項 A
+    //     </label>
+    //     </div>
+    // `;
 
-
-    row.appendChild(numberCell);
     row.appendChild(questionCell);
     questionTable.appendChild(row);
 
     // 跳轉連結
     const link = document.createElement('a');
-    link.href = `#q${i}`;
+    link.href = `#${row.id}`;
     link.textContent = `${i.toString().padStart(numberlength, '0')}`;
     link.style.display = 'block';
     link.style.margin = '5px 0';
     link.style.color = 'red';
-    link.id = `link-q${i}`;
+    link.id = `link-${row.id}`;
     container.appendChild(link);
 
     // 監控選項
-    const inputs = questionCell.querySelectorAll(`input[name="q${i}"]`);
+    const inputs = questionCell.querySelectorAll(`input[name="${row.id}"]`);
     inputs.forEach(input => {
         input.addEventListener('change', () => {
-            const linkElement = document.getElementById(`link-q${i}`);
+            const linkElement = document.getElementById(`link-${row.id}`);
             if (input.checked) {
                 linkElement.style.color = 'blue';
                 linkElement.className = 'answered';
@@ -88,7 +106,7 @@ for (let i = 1; i <= totalQuestions; i++) {
 
 
 // 倒數計時設定單位是秒
-const mysumtime = 5;
+const mysumtime = 3600; // 60分鐘
 let timeRemaining = mysumtime;
 
 // 更新螢幕
