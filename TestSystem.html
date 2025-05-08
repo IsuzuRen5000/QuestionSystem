@@ -8,7 +8,9 @@
 </head>
 <body>
     <h2>線上測驗系統</h2>
-
+    <div id="timer">
+        剩餘時間：<span id="totaltime"></span>
+    </div>
     <table id="questionTable">
         <tr>
             <th>題號</th>
@@ -17,8 +19,12 @@
     </table>
 
     <!-- 跳轉區塊 -->
-    <div class="hover-area">
-        <div class="bottom-right" id="jumpLinks">
+    <div class="hover-area" id="hoverArea">
+        <div class="checkAnsBtn">
+            <a id="checkAnsBtn">&#10095;</a>
+        </div>
+        <div class="fixed-bottom" id="jumpLinks">
+
         </div>
     </div>
     
