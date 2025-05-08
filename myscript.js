@@ -3,7 +3,7 @@ const numberlength = totalQuestions.toString().length; // 題號長度
 const questionTable = document.getElementById('questionTable').appendChild(document.createElement('tbody'));
 const container = document.getElementById('jumpLinks');
 
-var checkAnsisShow = false; // 題目總覽是否顯示
+var checkAnsisShow = true; // 題目總覽是否顯示
 // 題目總覽按鈕
 const checkAnswerButton = document.querySelector('#checkAnsBtn').addEventListener('click', () => {
     checkAnsisShow = !checkAnsisShow;
@@ -39,7 +39,7 @@ for (let i = 1; i <= totalQuestions; i++) {
         div.className = 'question-input-group';
         const input = document.createElement('input');
         input.type = 'radio';
-        input.name = `q${i}`;
+        input.name = `${row.id}`;
         input.id = `${row.id}${j}`;
         input.className = 'form-check-input';
         const label = document.createElement('label');
@@ -65,19 +65,19 @@ for (let i = 1; i <= totalQuestions; i++) {
 
     // 跳轉連結
     const link = document.createElement('a');
-    link.href = `#q${i}`;
+    link.href = `#${row.id}`;
     link.textContent = `${i.toString().padStart(numberlength, '0')}`;
     link.style.display = 'block';
     link.style.margin = '5px 0';
     link.style.color = 'red';
-    link.id = `link-q${i}`;
+    link.id = `link-${row.id}`;
     container.appendChild(link);
 
     // 監控選項
-    const inputs = questionCell.querySelectorAll(`input[name="q${i}"]`);
+    const inputs = questionCell.querySelectorAll(`input[name="${row.id}"]`);
     inputs.forEach(input => {
         input.addEventListener('change', () => {
-            const linkElement = document.getElementById(`link-q${i}`);
+            const linkElement = document.getElementById(`link-${row.id}`);
             if (input.checked) {
                 linkElement.style.color = 'blue';
                 linkElement.className = 'answered';
@@ -106,7 +106,7 @@ for (let i = 1; i <= totalQuestions; i++) {
 
 
 // 倒數計時設定單位是秒
-const mysumtime = 5;
+const mysumtime = 3600; // 60分鐘
 let timeRemaining = mysumtime;
 
 // 更新螢幕

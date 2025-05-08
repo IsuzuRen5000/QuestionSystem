@@ -14,30 +14,25 @@
 <body>
     <h2>線上測驗系統</h2>
 
-    <table id="questionTable" class="table table-bordered table-hover">
-        <!-- <thead>
-            <tr>
-                <th>題號</th>
-                <th>題目與選項</th>
-            </tr>
-        </thead> -->
-    </table>
-    <div class="position-fixed top-0 end-0" style="width: 10%; min-width: 150px;">
-        <div class="d-flex flex-column justify-content-center text-center bg-secondary">
-            <div>
+    <div class="sidebar d-inline-block" >
+        <div class="text-center">
+
                 <h5>剩餘時間</h5>
                 <div id="timer" class="alert">
                     <span id="totaltime"></span>
                 </div>
-            </div>
-            <button id="submitBtn" class="btn">提交</button>
-            <button id="resetBtn" class="btn">重置</button>
+
+            <button id="submitBtn" class="btn btn-success">提交</button>
+            <!-- <button id="resetBtn" class="btn btn-danger">重置</button> -->
         </div>
     </div>
+    <table id="questionTable" class="table table-bordered table-hover">
+            <!-- 題目列表將在這裡動態生成 -->
+    </table>
     <!-- 跳轉區塊 -->
-    <div class="hover-area" id="hoverArea">
+    <div class="hover-area show" id="hoverArea">
         <div class="checkAnsBtn">
-            <a id="checkAnsBtn">&#10095;</a>
+            <a id="checkAnsBtn" class="active">&#10095;</a>
         </div>
         <div class="f-b" id="jumpLinks">
 
