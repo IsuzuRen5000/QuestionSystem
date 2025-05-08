@@ -71,6 +71,12 @@
     background-color: #888;
     border-radius: 10px;
   }
+
+  #timer {
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+  }
   
   #jumpLinks {
     height: 15vh;
@@ -84,6 +90,7 @@
     height: max-content;
     max-width: 75%;
   }
+
   .hover-area.show{
     transform: translateX(50%) translateY(0%);
     transition: 0.3s ease;

@@ -103,3 +103,38 @@ for (let i = 1; i <= totalQuestions; i++) {
 // submitButton.style.display = "block";
 // submitButton.onclick = submitAnswers;
 // document.body.appendChild(submitButton);
+
+
+// 倒數計時設定單位是秒
+const mysumtime = 5;
+let timeRemaining = mysumtime;
+
+// 更新螢幕
+function updateTimerDisplay() {
+    const minutes = Math.floor(timeRemaining / 60);
+    const seconds = timeRemaining % 60;
+    // 找totaltime更新顯示的時間格式為 mm:ss
+    document.getElementById('totaltime').textContent = 
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+// 倒數計時
+function startCountdown() {
+    // setInterval單位是毫秒
+    const timerInterval = setInterval(() => {
+        if (timeRemaining > 0) {
+            timeRemaining--;
+            updateTimerDisplay();
+        } else {
+            clearInterval(timerInterval);
+            alert("時間到，將觸發自動交卷。");
+            submitAnswers();
+        }
+    }, 1000);
+}
+
+// 頁面載入後啟動倒數計時
+window.addEventListener('load', () => {
+    updateTimerDisplay();
+    startCountdown();
+});
