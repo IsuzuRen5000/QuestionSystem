@@ -1,6 +1,28 @@
-const totalQuestions = 50; // 題目數量
+const totalQuestions = 100; // 題目數量
+const numberlength = totalQuestions.toString().length; // 題號長度
 const questionTable = document.getElementById('questionTable');
 const container = document.getElementById('jumpLinks');
+
+var checkAnsisShow = false; // 題目總覽是否顯示
+// 題目總覽按鈕
+const checkAnswerButton = document.querySelector('#checkAnsBtn').addEventListener('click', () => {
+    checkAnsisShow = !checkAnsisShow;
+    let el = document.querySelector('#checkAnsBtn');
+    let window = document.querySelector('#hoverArea');
+    if (checkAnsisShow) {
+        el.classList.add('active');
+        window.classList.replace('hidden', 'show');
+        window.classList.add('show');
+    }else{
+        try{
+            el.classList.remove('active');
+            window.classList.replace('show', 'hidden');
+            window.classList.add('hidden');
+        }catch(e){
+            console.log('active class not found');
+        }
+    }
+});
 
 for (let i = 1; i <= totalQuestions; i++) {
     const row = document.createElement('tr');
@@ -26,7 +48,7 @@ for (let i = 1; i <= totalQuestions; i++) {
     // 跳轉連結
     const link = document.createElement('a');
     link.href = `#q${i}`;
-    link.textContent = `第${i}題`;
+    link.textContent = `${i.toString().padStart(numberlength, '0')}`;
     link.style.display = 'block';
     link.style.margin = '5px 0';
     link.style.color = 'red';
@@ -40,6 +62,7 @@ for (let i = 1; i <= totalQuestions; i++) {
             const linkElement = document.getElementById(`link-q${i}`);
             if (input.checked) {
                 linkElement.style.color = 'blue';
+                linkElement.className = 'answered';
             }
         });
     });
